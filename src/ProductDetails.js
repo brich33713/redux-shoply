@@ -1,7 +1,7 @@
 import react from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import {ADD_TO_CART, REMOVE_FROM_CART} from './actionTypes'
+import {addToCart,removeFromCart} from './actionCreators'
 
 const ProductDetails = () => {
     const dispatch = useDispatch()
@@ -14,12 +14,13 @@ const ProductDetails = () => {
     const handleClick = (e) => {
         e.preventDefault()
         if(e.target.innerText === 'Add to Cart'){
-        dispatch({type: ADD_TO_CART,props:product})
+        dispatch(addToCart(product))
         } else {
-            dispatch({type: REMOVE_FROM_CART,props:product.name})
+            dispatch(removeFromCart(product.name))
         }
     }
 
+    //determines count of each item
     const countArray = cart.map(item => item.name)
     let count = 0
     for(let i = 0; i < countArray.length; i++){

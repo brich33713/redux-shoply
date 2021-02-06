@@ -1,8 +1,7 @@
 import react from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Products from './Products';
-import {ADD_TO_CART,REMOVE_FROM_CART} from './actionTypes'
+import {addToCart,removeFromCart} from './actionCreators'
 
 const Cart = () => {
     const dispatch = useDispatch()
@@ -45,9 +44,9 @@ const Cart = () => {
         if(e.target.innerText === 'Add'){
             let index = cart.findIndex(item => item.name === e.target.name)
             let product = cart[index]
-            dispatch({type: ADD_TO_CART,props:product})
+            dispatch(addToCart(product))
         } else {
-            dispatch({type: REMOVE_FROM_CART,props:e.target.name})
+            dispatch(removeFromCart(e.target.name))
         }
     }
     
